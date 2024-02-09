@@ -17,17 +17,6 @@ export default {
         dark: '#495057',
         darkest: '#343a40',
       },
-      animation: {
-        loader: 'loader',
-      },
-      keyframes: {
-        loader: {
-          '20%': { backgroundPosition: '0% 0%, 50% 50%, 100% 50%' },
-          '40%': { backgroundPosition: '0% 100%, 50% 0%, 100% 50%' },
-          '60%': { backgroundPosition: '0% 50%, 50% 100%, 100% 0%' },
-          '80%': { backgroundPosition: '0% 0%, 50% 50%, 100% 100%' },
-        }
-      }
     },
   },
   plugins: [],
