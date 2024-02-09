@@ -1,10 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import Header from "./layout/Header"
 import MainContent from "./layout/MainContent"
 import Page from "./layout/Page"
+import questionReducer from "./reducer/questionsReducer";
+import Loader from "./components/Loader";
+import Error from "./components/Error";
+
+
+const initialState = {
+  questions: [],
+  status: 'loading', // loading, error, ready, active, finished
+}
 
 function App() {
-  const [questions, setQuestions] = useState([]);
+  const [{ questions, status }, dispatch] = useReducer(questionReducer, initialState);
 
   const fetchQuestions = async () => {
     try {
@@ -13,9 +22,16 @@ function App() {
         throw new Error('Failed to fetch questions');
       }
       const data = await response.json();
-      setQuestions(data);
+      dispatch(
+        {
+          type: 'DATA_FETCH_SUCCESS',
+          payload: data
+        }
+      )
     } catch (error) {
-      console.error("Error fetching questions", error);
+      dispatch({
+        type: 'DATA_FETCH_ERROR'
+      })
     }
   };
 
@@ -28,12 +44,17 @@ function App() {
     <Page>
       <Header />
       <MainContent>
-        <h2>Welcome to the React Quiz</h2>
-        {questions.map((question) => (
-          <div key={question.id}>
-            <p className="mb-6">{question.question}</p>
+        {status === 'loading' && <Loader />}
+        {status === 'error' && <Error />}
+        {status === 'ready' &&
+          <div>
+            {questions.map((question) => (
+              <div key={question.id}>
+                <p className="mb-4">{question.question}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        }
       </MainContent>
     </Page>
   )
