@@ -67,3 +67,27 @@ progress {
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }
+
+.button {
+  @apply block text-3xl mt-6 py-3 px-9 cursor-pointer rounded-[100px] duration-300 bg-dark border-2 border-dark shadow-md hover:bg-darkest hover:disabled:cursor-not-allowed hover:shadow-lg active:shadow-none text-inherit;
+}
+
+.button-option {
+  @apply hover:translate-x-5 w-full text-left;
+}
+
+.button-option.correct {
+  @apply bg-primary border-2 border-primary text-light;
+}
+
+.button-option.correct:hover {
+  @apply bg-dark border-2 border-primary text-light;
+}
+
+.button-option.wrong {
+  @apply bg-accent border-2 border-accent text-darkest;
+}
+
+.button-option.wrong:hover {
+  @apply bg-dark border-2 border-accent text-light;
+}

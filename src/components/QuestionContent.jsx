@@ -3,17 +3,20 @@ import questionReducer from "../reducer/questionsReducer";
 import Loader from "./Loader";
 import Error from "./Error";
 import Question from "./Question";
-import { shuffle } from "lodash";
+// import { shuffle } from "lodash";
+import StartScreen from "./StartScreen";
 
 
 const initialState = {
     questions: [],
     status: 'loading', // loading, error, ready, active, finished
+    questionIndex: 0,
+    answer: null,
 }
 
 function QuestionContent() {
 
-    const [{ questions, status }, dispatch] = useReducer(questionReducer, initialState);
+    const [{ questions, status, questionIndex, answer }, dispatch] = useReducer(questionReducer, initialState);
 
     const fetchQuestions = async () => {
         try {
@@ -40,14 +43,12 @@ function QuestionContent() {
     }, []);
 
 
-
     return (
         <div>
             {status === 'loading' && <Loader />}
             {status === 'error' && <Error />}
-            {status === 'ready' && shuffle(questions).map((question) => (
-                <Question key={question.id} question={question} />
-            ))}
+            {status === 'ready' && <StartScreen questionCount={questions.length} dispatch={dispatch} />}
+            {status === 'active' && <Question question={questions[questionIndex]} dispatch={dispatch} answer={answer} />}
         </div>
     )
 }

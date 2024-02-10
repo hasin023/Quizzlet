@@ -1,9 +1,3 @@
-.start {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .progress {
   margin-bottom: 4rem;
   display: grid;
