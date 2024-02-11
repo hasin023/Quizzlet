@@ -18,7 +18,8 @@ const initialState = {
 
 function QuestionContent() {
 
-    const [{ questions, status, questionIndex, answer }, dispatch] = useReducer(questionReducer, initialState);
+    const [{ questions, status, questionIndex, answer, points }, dispatch] = useReducer(questionReducer, initialState);
+    const maxPoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
     const fetchQuestions = async () => {
         try {

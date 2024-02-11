@@ -33,11 +33,11 @@ h3 {
 }
 
 h4 {
-  @apply text-4xl font-semibold mb-10;
+  @apply text-3xl font-semibold mb-8;
 }
 
 progress {
-  @apply appearance-none w-full h-3 col-span-1;
+  @apply appearance-none w-full h-3;
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
@@ -69,11 +69,11 @@ progress {
 }
 
 .button {
-  @apply block text-3xl mt-6 py-3 px-9 cursor-pointer rounded-[100px] duration-300 bg-dark border-2 border-dark shadow-md hover:bg-darkest hover:disabled:cursor-not-allowed hover:shadow-lg active:shadow-none text-inherit;
+  @apply block text-3xl mt-3 py-3 px-9 cursor-pointer rounded-[100px] duration-300 bg-dark border-2 border-dark shadow-md hover:bg-darkest hover:disabled:cursor-not-allowed hover:shadow-lg active:shadow-none text-inherit;
 }
 
 .button-option {
-  @apply hover:translate-x-5 w-full text-left;
+  @apply hover:translate-x-5 w-full text-left text-2xl;
 }
 
 .button-option.correct {

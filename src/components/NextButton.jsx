@@ -3,7 +3,7 @@ function NextButton({ dispatch, answer }) {
 
     return (
         <button onClick={() => dispatch({ type: 'NEXT_QUESTION' })}
-            className="button float-right active:translate-y-0.5">
+            className="button float-right active:translate-y-0.5 text-2xl">
             Next
         </button>
     )
