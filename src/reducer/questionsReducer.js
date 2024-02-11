@@ -16,10 +16,20 @@ function questionReducer(state, action) {
                 ...state,
                 status: 'active'
             }
-        case 'ANSWER_QUESTION':
+        case 'ANSWER_QUESTION': {
+            const currentQuestion = state.questions.at(state.questionIndex);
+
             return {
                 ...state,
-                answer: action.payload
+                answer: action.payload,
+                points: action.payload === currentQuestion.correctOption ? state.points + currentQuestion.points : state.points,
+            }
+        }
+        case 'NEXT_QUESTION':
+            return {
+                ...state,
+                questionIndex: state.questionIndex + 1,
+                answer: null,
             }
         default:
             return state;

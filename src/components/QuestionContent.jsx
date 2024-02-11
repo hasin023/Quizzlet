@@ -5,6 +5,7 @@ import Error from "./Error";
 import Question from "./Question";
 // import { shuffle } from "lodash";
 import StartScreen from "./StartScreen";
+import NextButton from "./NextButton";
 
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     status: 'loading', // loading, error, ready, active, finished
     questionIndex: 0,
     answer: null,
+    points: 0,
 }
 
 function QuestionContent() {
@@ -48,7 +50,12 @@ function QuestionContent() {
             {status === 'loading' && <Loader />}
             {status === 'error' && <Error />}
             {status === 'ready' && <StartScreen questionCount={questions.length} dispatch={dispatch} />}
-            {status === 'active' && <Question question={questions[questionIndex]} dispatch={dispatch} answer={answer} />}
+            {status === 'active' && (
+                <>
+                    <Question question={questions[questionIndex]} dispatch={dispatch} answer={answer} />
+                    <NextButton dispatch={dispatch} answer={answer} />
+                </>
+            )}
         </div>
     )
 }
