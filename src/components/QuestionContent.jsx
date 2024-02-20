@@ -6,6 +6,7 @@ import Question from "./Question";
 // import { shuffle } from "lodash";
 import StartScreen from "./StartScreen";
 import NextButton from "./NextButton";
+import Progressbar from "./Progressbar";
 
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
 function QuestionContent() {
 
     const [{ questions, status, questionIndex, answer, points }, dispatch] = useReducer(questionReducer, initialState);
-    const maxPoints = questions.reduce((prev, curr) => prev + curr.points, 0);
+    let maxPoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
     const fetchQuestions = async () => {
         try {
@@ -53,6 +54,7 @@ function QuestionContent() {
             {status === 'ready' && <StartScreen questionCount={questions.length} dispatch={dispatch} />}
             {status === 'active' && (
                 <>
+                    <Progressbar index={questionIndex} numQuestions={questions.length} points={points} maxPoints={maxPoints} answer={answer} />
                     <Question question={questions[questionIndex]} dispatch={dispatch} answer={answer} />
                     <NextButton dispatch={dispatch} answer={answer} />
                 </>
