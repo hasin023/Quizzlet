@@ -31,6 +31,11 @@ function questionReducer(state, action) {
                 questionIndex: state.questionIndex + 1,
                 answer: null,
             }
+        case 'FINISHED_QUESTIONS':
+            return {
+                ...state,
+                status: 'finished'
+            }
         default:
             return state;
     }

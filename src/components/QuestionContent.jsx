@@ -7,6 +7,7 @@ import Question from "./Question";
 import StartScreen from "./StartScreen";
 import NextButton from "./NextButton";
 import Progressbar from "./Progressbar";
+import FinishScreen from "./FinishScreen";
 
 
 const initialState = {
@@ -56,9 +57,10 @@ function QuestionContent() {
                 <>
                     <Progressbar index={questionIndex} numQuestions={questions.length} points={points} maxPoints={maxPoints} answer={answer} />
                     <Question question={questions[questionIndex]} dispatch={dispatch} answer={answer} />
-                    <NextButton dispatch={dispatch} answer={answer} />
+                    <NextButton dispatch={dispatch} answer={answer} index={questionIndex} numQuestions={questions.length} />
                 </>
             )}
+            {status === 'finished' && <FinishScreen points={points} maxPoints={maxPoints} />}
         </div>
     )
 }
