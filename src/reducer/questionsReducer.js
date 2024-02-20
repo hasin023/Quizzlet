@@ -34,7 +34,8 @@ function questionReducer(state, action) {
         case 'FINISHED_QUESTIONS':
             return {
                 ...state,
-                status: 'finished'
+                status: 'finished',
+                highscore: state.points > state.highscore ? state.points : state.highscore
             }
         default:
             return state;

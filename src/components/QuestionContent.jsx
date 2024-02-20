@@ -16,11 +16,12 @@ const initialState = {
     questionIndex: 0,
     answer: null,
     points: 0,
+    highscore: 0
 }
 
 function QuestionContent() {
 
-    const [{ questions, status, questionIndex, answer, points }, dispatch] = useReducer(questionReducer, initialState);
+    const [{ questions, status, questionIndex, answer, points, highscore }, dispatch] = useReducer(questionReducer, initialState);
     let maxPoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
     const fetchQuestions = async () => {
@@ -60,7 +61,7 @@ function QuestionContent() {
                     <NextButton dispatch={dispatch} answer={answer} index={questionIndex} numQuestions={questions.length} />
                 </>
             )}
-            {status === 'finished' && <FinishScreen points={points} maxPoints={maxPoints} />}
+            {status === 'finished' && <FinishScreen points={points} maxPoints={maxPoints} highscore={highscore} />}
         </div>
     )
 }
